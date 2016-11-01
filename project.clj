@@ -9,11 +9,21 @@
                  [com.cemerick/piggieback    "0.2.1"]
                  [com.squareup.okhttp/okhttp "2.5.0"]
                  [cheshire "5.6.3"]
-                 [happy "0.5.2"]]
-  :plugins [[lein-cljsbuild "1.1.3"]
+                 [happy "0.5.2"]
+                 [apple-receipt "0.1.0-SNAPSHOT"]]
+  :plugins [[s3-wagon-private "1.2.0"]
+            [lein-cljsbuild "1.1.3"]
             [lein-npm       "0.6.2"]]
   :npm {:dependencies [[source-map-support "0.4.0"]
                        [xhr2 "0.1.3"]]}
+
+  :repositories {"snapshots" {:url "s3p://libs.subsystem.co/snapshots"
+                              :username :env/aws_libs_access_key
+                              :passphrase :env/aws_libs_secret_key}
+                 "releases" {:url "s3p://libs.subsystem.co/releases"
+                             :username :env/aws_libs_access_key
+                             :passphrase :env/aws_libs_secret_key}}
+
   :cljsbuild
   {:builds [{:id "apple-picker"
              :source-paths ["src"]
