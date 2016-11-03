@@ -44,4 +44,5 @@
                               :language-in   :ecmascript5
                               :optimizations :none
                               :main          apple-picker.test-runner}}}}
+
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]})
