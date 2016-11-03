@@ -15,7 +15,7 @@
             [lein-cljsbuild "1.1.4"]
             [lein-npm       "0.6.2"]
             [lein-doo       "0.1.7"]]
-  :npm {:dependencies [[source-map-support "0.4.0"]
+  :npm {:dependencies [[source-map-support "0.4.6"]
                        [xhr2 "0.1.3"]]}
 
   :repositories {"snapshots" {:url "s3p://libs.subsystem.co/snapshots"
