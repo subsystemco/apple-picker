@@ -2,9 +2,8 @@
   (:require [apple-receipt.record :as record]
             [apple-receipt.status-code :as status-code]
             [apple-picker.http :as http]
-            #?@(:clj  [[clojure.core.async :as async]
-                       [clojure.core.async :refer [go <!]]]
-                :cljs [[cljs.core.async :as async]]))
+            #?@(:clj  [[clojure.core.async :as async :refer [go <!]]]
+                :cljs [[cljs.core.async :as async :refer [<!]]]))
   #?(:cljs (:require-macros [cljs.core.async.macros :refer [go]])))
 
 (def config
