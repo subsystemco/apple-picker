@@ -29,10 +29,12 @@
             (str "Test should have finished within " ms "ms."))
         v)))
 
+(def default-timeout 2000)
+
 (deftest receipt-verification-works
   (testing "a valid production receipt is correctly returned"
     (test-async
-     (test-within 1000
+     (test-within default-timeout
       (go (let [receipt (:production-empty fixture/receipts)
                 response (<! (verify-receipt (:receipt-data receipt) (:password receipt)))]
             (is (record? response))
@@ -40,7 +42,7 @@
 
   (testing "a receipt is validated with sandbox if a 21007 status code is returned"
     (test-async
-     (test-within 1000
+     (test-within default-timeout
       (go (let [receipt (:sandbox-expired fixture/receipts)
                 response (<! (verify-receipt (:receipt-data receipt) (:password receipt)))]
             (is (record? response))
@@ -48,7 +50,7 @@
 
   (testing "an invalid receipt is correctly returned"
     (test-async
-     (test-within 1000
+     (test-within default-timeout
       (go (let [response (<! (verify-receipt "foo" "bar"))]
             (is (record? response))
             (is (= status-code/data-malformed (:status response)))))))))
