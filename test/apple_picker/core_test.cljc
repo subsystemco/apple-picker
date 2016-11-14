@@ -1,12 +1,13 @@
 (ns apple-picker.core-test
-  (:require [clojure.test :refer :all]
-            [apple-picker.core :refer :all]
+  (:require [apple-picker.core :refer [verify-receipt]]
             [apple-picker.http :as http]
             [apple-picker.fixture :as fixture]
             [apple-receipt.record :as record]
             [apple-receipt.status-code :as status-code]
-            #?@(:clj  [[clojure.core.async :as async :refer [go <!! <! timeout alts!]]]
-                :cljs [[cljs.core.async :as async :refer [<! timeout alts!]]]))
+            #?@(:clj  [[clojure.test :refer :all]
+                       [clojure.core.async :as async :refer [go <!! <! timeout alts!]]]
+                :cljs [[cljs.test :refer-macros [deftest is testing]]
+                       [cljs.core.async :as async :refer [<! timeout alts!]]]))
   #?(:cljs (:require-macros [cljs.core.async.macros :refer [go]])))
 
 
