@@ -14,7 +14,7 @@
       (is (record? response))
       (is (= "Production" (get-in response [:receipt :receipt_type])))))
 
-  (testing "a receipt is validated with sandbox if code returned"
+  (testing "a receipt is validated with sandbox if a 21007 status code is returned"
     (let [receipt (:sandbox-expired fixture/receipts)
           response (<!! (verify-receipt (:receipt-data receipt) (:password receipt)))]
       (is (record? response))
