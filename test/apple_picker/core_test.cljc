@@ -5,9 +5,9 @@
             [apple-receipt.record :as record]
             [apple-receipt.status-code :as status-code]
             #?@(:clj  [[clojure.test :refer :all]
-                       [clojure.core.async :as async :refer [go <!! <! timeout alts!]]]
-                :cljs [[cljs.test :refer-macros [deftest is testing]]
-                       [cljs.core.async :as async :refer [<! timeout alts!]]]))
+                       [clojure.core.async :refer [go <!! <! timeout alts! take!]]]
+                :cljs [[cljs.test :refer-macros [deftest async is testing]]
+                       [cljs.core.async :refer [<! timeout alts! take!]]]))
   #?(:cljs (:require-macros [cljs.core.async.macros :refer [go]])))
 
 
