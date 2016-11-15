@@ -4,20 +4,14 @@
             [apple-picker.fixture :as fixture]
             [apple-receipt.record :as record]
             [apple-receipt.status-code :as status-code]
+            [two-headed-boy.core :as utils]
             #?@(:clj  [[clojure.test :refer :all]
-                       [clojure.core.async :refer [go <!! <! timeout alts! take!]]]
+                       [clojure.core.async :refer [go <!! <! timeout alts!]]]
                 :cljs [[cljs.test :refer-macros [deftest async is testing]]
                        [cljs.core.async :refer [<! timeout alts! take!]]]))
   #?(:cljs (:require-macros [cljs.core.async.macros :refer [go]])))
 
-
 ;; via http://stackoverflow.com/a/30781278
-
-(defn test-async
-  "Asynchronous test awaiting ch to produce a value or close."
-  [ch]
-  #?(:clj (<!! ch)
-     :cljs (async done (take! ch (fn [_] (done))))))
 
 (defn test-within
   "Asserts that ch does not close or produce a value within ms. Returns a
@@ -33,7 +27,7 @@
 
 (deftest receipt-verification-works
   (testing "a valid production receipt is correctly returned"
-    (test-async
+    (utils/test-async
      (test-within default-timeout
       (go (let [receipt (:production-empty fixture/receipts)
                 response (<! (verify-receipt (:receipt-data receipt) (:password receipt)))]
@@ -41,7 +35,7 @@
             (is (= "Production" (get-in response [:receipt :receipt_type]))))))))
 
   (testing "a receipt is validated with sandbox if a 21007 status code is returned"
-    (test-async
+    (utils/test-async
      (test-within default-timeout
       (go (let [receipt (:sandbox-expired fixture/receipts)
                 response (<! (verify-receipt (:receipt-data receipt) (:password receipt)))]
@@ -49,7 +43,7 @@
             (is (= "ProductionSandbox" (get-in response [:receipt :receipt_type]))))))))
 
   (testing "an invalid receipt is correctly returned"
-    (test-async
+    (utils/test-async
      (test-within default-timeout
       (go (let [response (<! (verify-receipt "foo" "bar"))]
             (is (record? response))

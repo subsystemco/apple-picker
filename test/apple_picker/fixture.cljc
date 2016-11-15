@@ -1,5 +1,5 @@
 (ns apple-picker.fixture
-  (:require [apple-picker.utils :as utils]))
+  (:require [two-headed-boy.core :as utils]))
 
-(def receipts (utils/read-data "test/edn/receipts.edn"))
-(def responses (utils/read-data "test/edn/responses.edn"))
+(def receipts (utils/read-file "test/edn/receipts.edn"))
+(def responses (utils/read-file "test/edn/responses.edn"))
