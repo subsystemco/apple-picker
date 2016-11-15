@@ -1,14 +1,10 @@
-# apple-picker
+# Apple Picker
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure(Script) library for fetching updates from the Apple receipt
+validation server. For use as part
+of
+[Subsystem’s Lambdas](https://github.com/leppert/subsystem-lambdas).
 
 ## Usage
 
-FIXME
-
-## License
-
-Copyright © 2016 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+See [the tests](https://github.com/leppert/apple-picker/blob/master/test/apple_picker/core_test.cljc#L33) for usage.
