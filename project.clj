@@ -1,4 +1,4 @@
-(defproject apple-picker "0.1.0-SNAPSHOT"
+(defproject co.subsystem/apple-picker "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -10,7 +10,7 @@
                  [com.squareup.okhttp/okhttp "2.5.0"]
                  [cheshire "5.6.3"]
                  [happy "0.5.2"]
-                 [apple-receipt "0.1.0-SNAPSHOT"]
+                 [co.subsystem/apple-receipt "0.1.0-SNAPSHOT"]
                  [two-headed-boy "0.1.0"]]
   :plugins [[s3-wagon-private "1.2.0"]
             [lein-cljsbuild "1.1.4"]
