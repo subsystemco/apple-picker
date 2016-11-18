@@ -20,7 +20,7 @@
   (let [channel (async/chan 1)]
     (h/send! options
              {:handler (fn [response]
-                         (async/put! channel response #(async/close! channel)))})
+                         (async/put! channel response (fn [_] (async/close! channel))))})
     channel))
 
 (defn post
