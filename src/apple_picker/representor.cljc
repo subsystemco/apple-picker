@@ -13,7 +13,7 @@
   [s keywordize-keys?]
   #?(:clj (che/parse-string s keywordize-keys?)
      :cljs (-> (.parse js/JSON (if (str/blank? s) nil s))
-               (js->clj :keywordize-keys keywordize-keys?)))
+               (js->clj :keywordize-keys keywordize-keys?))))
 
 (defn create
   ([] (create false))
