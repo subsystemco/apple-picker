@@ -1,5 +1,6 @@
 (ns apple-picker.representor
-  (:require [happy.core :as core]
+  (:require [clojure.string :as str]
+            [happy.core :as core]
             [happy.representors :refer [Representator]]
             #?(:clj [cheshire.core :as che])))
 
@@ -11,7 +12,8 @@
 (defn unserialize
   [s keywordize-keys?]
   #?(:clj (che/parse-string s keywordize-keys?)
-     :cljs (js->clj (.parse js/JSON s) :keywordize-keys keywordize-keys?)))
+     :cljs (-> (.parse js/JSON (if (str/blank? s) nil s))
+               (js->clj :keywordize-keys keywordize-keys?)))
 
 (defn create
   ([] (create false))
